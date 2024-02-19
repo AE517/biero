@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/vue-3/recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "prettier",
+    "prettier/vue"
+  ],
+  "parserOptions": {
+    "ecmaversion": 2020
+  }
+}
