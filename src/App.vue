@@ -11,4 +11,10 @@ import NavBar from './components/NavBar.vue'
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+</style>
