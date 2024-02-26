@@ -12,7 +12,7 @@
       </div>
       <button
         class="nav__button"
-        @click="showBar"
+        @click="isVisible = !isVisible"
         :class="{ active: !isVisible }"
       >
         <font-awesome-icon icon="bars" />
@@ -33,10 +33,6 @@ const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
   { routeName: 'Categories', path: 'categories' },
   { routeName: 'Glasses', path: 'glasses' },
 ]
-
-const showBar = () => {
-  isVisible.value = !isVisible.value
-}
 </script>
 
 <style lang="scss" scoped>
@@ -45,7 +41,6 @@ const showBar = () => {
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav {
@@ -66,7 +61,7 @@ const showBar = () => {
   font-size: 24px;
 
   &__links {
-    color: $font-white;
+    color: $white;
     margin: 0.5em;
     display: flex;
 
@@ -76,7 +71,7 @@ const showBar = () => {
     a {
       border-radius: 10px;
       margin: 0 5px;
-      padding: 5px;
+      padding: 5px 15px;
 
       color: #d6ebe0;
       text-decoration: none;
@@ -102,7 +97,7 @@ const showBar = () => {
 
         a {
           padding: 5px 10px;
-          font-size: 32px;
+          font-size: 24px;
         }
       }
     }
@@ -112,8 +107,8 @@ const showBar = () => {
     display: none;
     padding: 5px;
 
-    background-color: $bg2-blue;
-    color: $font-white;
+    background-color: $blue2;
+    color: $white;
 
     @media screen and (max-width: 480px) {
       display: block;
@@ -124,6 +119,13 @@ const showBar = () => {
     margin-top: 0;
     border-radius: 0;
     width: 100%;
+
+    &__links {
+      a {
+        font-size: 20px;
+        padding: 5px;
+      }
+    }
   }
 
   @media screen and (max-width: 480px) {

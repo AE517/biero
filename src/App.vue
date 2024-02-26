@@ -7,7 +7,9 @@ import NavBar from './components/NavBar.vue'
     <div id="navbar">
       <NavBar />
     </div>
-    <router-view> </router-view>
+    <main>
+      <router-view> </router-view>
+    </main>
   </div>
 </template>
 
@@ -16,5 +18,9 @@ import NavBar from './components/NavBar.vue'
   margin: 0;
   padding: 0;
   display: block;
+}
+
+main {
+  margin-top: 5em;
 }
 </style>
