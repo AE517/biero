@@ -2,13 +2,15 @@
   <div>
     <div class="search-wrapper">
       <div class="input-field">
-        <input type="text" placeholder="Search drink here" />
+        <input type="text" v-model="model" placeholder="Search drink here" />
       </div>
       <button class="lucky-button">Feeling Lucky?</button>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const model = defineModel()
+</script>
 
 <style scoped lang="scss">
 @import '../styles/_variables.scss';

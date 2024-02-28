@@ -2,6 +2,9 @@
   <div>
     <div class="nav">
       <div class="nav__links" :class="{ active: isVisible }">
+        <a class="veisla" target="_blank" href="https://veisla.vercel.app"
+          >Hungry?</a
+        >
         <router-link
           v-for="link in options"
           :to="link.path"
@@ -28,8 +31,8 @@ import { ref } from 'vue'
 const isVisible = ref(false)
 
 const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
-  { routeName: 'Home', path: '/' },
   { routeName: 'Ingredients', path: 'ingredients' },
+  { routeName: 'Home', path: '/' },
   { routeName: 'Categories', path: 'categories' },
   { routeName: 'Glasses', path: 'glasses' },
 ]
@@ -44,6 +47,7 @@ const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
 }
 
 .nav {
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 50%;
@@ -81,6 +85,12 @@ const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
       &.router-link-active {
         color: #0c0c14;
         background-color: #acceaa;
+      }
+
+      &.veisla {
+        border-radius: 0;
+        color: #ee4905;
+        transition: none;
       }
     }
 
