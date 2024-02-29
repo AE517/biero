@@ -64,6 +64,8 @@ const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
 
   font-size: 24px;
 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   &__links {
     color: $white;
     margin: 0.5em;

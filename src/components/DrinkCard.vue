@@ -100,7 +100,7 @@ const tags: Array<String> =
 
         font-size: 2rem;
         text-overflow: ellipsis;
-        text-align: justify;
+        text-align: left;
       }
       .is-alcoholic {
         opacity: 50%;
@@ -121,9 +121,14 @@ const tags: Array<String> =
       font-size: 1rem;
       display: flex;
       justify-content: flex-start;
+      flex-wrap: wrap;
+      column-gap: 5px;
+      row-gap: 10px;
 
       .tag {
         p {
+          font-size: 0.8em;
+
           color: $blue;
           background-color: $green;
 
@@ -131,22 +136,22 @@ const tags: Array<String> =
 
           padding: 10px 1em;
         }
-
-        &:not(:first-of-type) {
-          margin-left: 10px;
-        }
       }
     }
   }
 
   &:hover {
-    scale: 1.055;
+    /* scale: 1.055; */
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
   &:hover > &__image > figure > img {
     scale: 1.075;
   }
 
-  transition: scale 0.2s ease-in;
+  transition:
+    transform 0.2s ease-in,
+    box-shadow 0.2s ease-in;
 }
 </style>
