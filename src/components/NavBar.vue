@@ -30,11 +30,14 @@ import { ref } from 'vue'
 
 const isVisible = ref(false)
 
-const options: Array<{ routeName: String; path: RouteLocationRaw }> = [
-  { routeName: 'Ingredients', path: 'ingredients' },
+const options: Array<{
+  routeName: String
+  path: RouteLocationRaw
+}> = [
+  { routeName: 'Ingredients', path: '/ingredients' },
   { routeName: 'Home', path: '/' },
-  { routeName: 'Categories', path: 'categories' },
-  { routeName: 'Glasses', path: 'glasses' },
+  { routeName: 'Categories', path: '/categories' },
+  { routeName: 'Glasses', path: '/glasses' },
 ]
 </script>
 

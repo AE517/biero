@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //Files
-import drinksAPI from '../api/main.ts'
+import API from '../api/main.ts'
 import alphabet from '../utils/alpha.ts'
 
 //Components
@@ -24,8 +24,8 @@ const searchDrinks = async (drink: String) => {
   loaded.value = false
   drinks.value =
     drink.length === 1
-      ? await drinksAPI.methods.search('f', drink)
-      : await drinksAPI.methods.search('s', drink)
+      ? await API.methods.search('f', drink)
+      : await API.methods.search('s', drink)
   title.value =
     drink.length === 1 ? `Starting with '${drink}'` : drink.toUpperCase()
   query.value = ''
