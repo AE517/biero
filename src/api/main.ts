@@ -15,11 +15,18 @@ const API = {
       return await axios
         .get(`${this.baseURL}random.php`)
         .then((response) => {
-          response.data.drinks
+          return response.data.drinks
         })
         .catch((error) => console.error(error))
     },
-    async filter() {},
+    async filter(param: String, query: String): Promise<Array<object>> {
+      return await axios
+        .get(`${this.baseURL}filter.php?${param}=${query}`)
+        .then((response) => {
+          return response.data.drinks
+        })
+        .catch((error) => console.error(error))
+    },
     async list(type: String) {
       return await axios
         .get(`${this.baseURL}list.php?${type.charAt(0)}=list`)

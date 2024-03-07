@@ -34,39 +34,41 @@ const searchDrinks = async (drink: String) => {
 </script>
 
 <template>
-  <section>
-    <div>Home</div>
-    <div class="search_field">
-      <SearchBar v-on:keyup.enter="searchDrinks(query)" v-model="query" />
-      <div class="letters-navigation">
-        <button
-          class="letters"
-          v-for="letter in alphabet"
-          @click="searchDrinks(letter)"
-        >
-          {{ letter }}
-        </button>
-      </div>
-    </div>
-  </section>
-  <Transition>
-    <section v-show="loaded">
-      <div class="drink-title">
-        <h1 v-if="drinks !== null">{{ title }}</h1>
-        <h1 v-else>Nothing here but Us</h1>
-      </div>
-      <Suspense>
-        <div class="cards-container">
-          <DrinkCard
-            v-for="drink in drinks"
-            :key="drink.idDrink"
-            :drink="drink"
-          />
+  <div>
+    <section>
+      <div class="search_field">
+        <SearchBar v-on:keyup.enter="searchDrinks(query)" v-model="query" />
+        <div class="letters-navigation">
+          <button
+            class="letters"
+            v-for="letter in alphabet"
+            @click="searchDrinks(letter)"
+          >
+            {{ letter }}
+          </button>
         </div>
-        <template #fallback> Loading... </template>
-      </Suspense>
+      </div>
     </section>
-  </Transition>
+    <Transition>
+      <section v-show="loaded">
+        <div class="drink-title">
+          <h1 v-if="drinks !== null">{{ title }}</h1>
+          <h1 v-else>Nothing here but Us</h1>
+        </div>
+        <Suspense>
+          <div class="cards-container">
+            <DrinkCard
+              v-for="drink in drinks"
+              :key="drink.idDrink"
+              :drink="drink"
+              :from-list="false"
+            />
+          </div>
+          <template #fallback> Loading... </template>
+        </Suspense>
+      </section>
+    </Transition>
+  </div>
 </template>
 
 <style lang="scss">
@@ -104,6 +106,17 @@ const searchDrinks = async (drink: String) => {
       transform: translateY(-10px);
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .letters {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 35px;
+      height: 40px;
+      text-align: center;
+    }
+  }
 }
 
 .drink-title {
@@ -120,7 +133,9 @@ const searchDrinks = async (drink: String) => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
   row-gap: 2em;
-  place-items: center;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 /* Vue Transition */

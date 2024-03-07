@@ -1,27 +1,30 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card" :class="{ 'card-from-list': fromList }">
       <div class="card__image">
         <figure>
-          <img :src="drink.strDrinkThumb" :alt="drink.strDrink" />
+          <img :src="data.image" :alt="data.name" />
         </figure>
       </div>
       <div class="card__content">
         <div class="card__content__heading">
-          <h1 class="drink-name">{{ drink.strDrink }}</h1>
-          <h3 class="is-alcoholic" v-if="!drink.strAlcoholic.includes('Non')">
-            {{ drink.strAlcoholic }}
+          <h1 class="drink-name">{{ data.name }}</h1>
+          <h3
+            class="is-alcoholic"
+            v-if="data.alcoholic !== null && !data.alcoholic.includes('Non')"
+          >
+            {{ data.alcoholic }}
           </h3>
         </div>
-        <div class="card__content__body">
-          <p class="category" v-if="!drink.strCategory.includes('Other')">
-            {{ drink.strCategory }}
+        <div class="card__content__body" v-if="data.category !== null">
+          <p class="category" v-if="!data.category.includes('Other')">
+            {{ data.category }}
           </p>
           <p class="category" v-else>Various</p>
-          <p class="glass">{{ drink.strGlass }}</p>
+          <p class="glass">{{ data.glass }}</p>
         </div>
-        <div class="card__content__tags">
-          <div class="tag" v-if="drink.strTags !== null" v-for="tag in tags">
+        <div class="card__content__tags" v-if="data.tags !== null">
+          <div class="tag" v-for="tag in data.tags">
             <p v-if="tag !== 'Alcoholic'">{{ tag }}</p>
           </div>
         </div>
@@ -31,10 +34,30 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['drink'])
+import { onBeforeMount, ref } from 'vue'
 
-const tags: Array<String> =
-  props.drink.strTags === null ? null : props.drink.strTags.split(',')
+const props = defineProps(['drink', 'fromList'])
+const data = ref()
+
+function validadeData() {
+  return {
+    name: props.drink.strDrink,
+    image: props.drink.strDrinkThumb,
+    category:
+      props.drink.strCategory !== undefined ? props.drink.strCategory : null,
+    glass: props.drink.strGlass !== undefined ? props.drink.strGlass : null,
+    tags:
+      props.drink.strTags !== undefined && props.drink.strTags !== null
+        ? props.drink.strTags.split(',')
+        : '',
+    alcoholic:
+      props.drink.strAlcoholic !== undefined ? props.drink.strAlcoholic : null,
+  }
+}
+
+onBeforeMount(() => {
+  data.value = validadeData()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -51,8 +74,8 @@ const tags: Array<String> =
   background-color: $blue2;
 
   display: flex;
+
   justify-content: center;
-  align-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -63,16 +86,13 @@ const tags: Array<String> =
   border-radius: 30px;
 
   &__image {
-    height: 375px;
-    width: 375px;
-
     border-radius: 30px;
     overflow: hidden;
 
     figure {
       img {
-        width: 375px;
-        height: 375px;
+        width: 100%;
+        max-height: auto;
 
         transition: scale 0.2s ease-in;
       }
@@ -84,7 +104,6 @@ const tags: Array<String> =
 
     display: flex;
     flex-direction: column;
-    justify-items: center;
     &__heading {
       color: $white;
       display: flex;
@@ -136,6 +155,34 @@ const tags: Array<String> =
 
           padding: 10px 1em;
         }
+      }
+    }
+  }
+
+  &.card-from-list {
+    height: 500px;
+    justify-content: space-between;
+    h1 {
+      font-size: 2.3rem;
+      width: 100%;
+    }
+
+    .card__content {
+      &__heading {
+        .drink-name {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 340px;
+    height: auto;
+
+    &__content {
+      &__heading {
+        width: 300px;
       }
     }
   }
