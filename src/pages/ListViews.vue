@@ -42,7 +42,7 @@ async function loadList(type: String): Promise<void> {
     .sort()
 }
 
-async function fetchDrinksByType(type: String, query: string) {
+async function fetchDrinksByType(type: String, query: string): Promise<void> {
   cardsLoaded.value = false
   const res: Array<object> = await api.methods.filter(type.charAt(0), query)
   drinks.value = res

@@ -35,6 +35,14 @@ const API = {
         })
         .catch((error) => console.error(error))
     },
+    async lookup(drinkID: String) {
+      return await axios
+        .get(`${this.baseURL}lookup.php?i=${drinkID}`)
+        .then((response) => {
+          return response.data.drinks[0]
+        })
+        .catch((error) => console.error(error))
+    },
   },
 }
 

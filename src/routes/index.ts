@@ -1,6 +1,8 @@
 //Pages
-import Home from '../pages/Home.vue'
-import ListViews from '../pages/ListViews.vue'
+const Home = () => import('../pages/Home.vue')
+const ListViews = () => import('../pages/ListViews.vue')
+const DrinkPage = () => import('../pages/DrinkPage.vue')
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -16,6 +18,12 @@ const routes = [
       }
       return !isValid(to.params.listType) ? next({ name: 'Home' }) : next()
     },
+  },
+  {
+    path: '/drinks/:drinkID',
+    name: 'DrinkPage',
+    component: DrinkPage,
+    props: true,
   },
 ]
 
