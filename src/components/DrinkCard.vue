@@ -1,38 +1,3 @@
-<template>
-  <div>
-    <div class="card" :class="{ 'card-from-list': fromList }">
-      <div class="card__image">
-        <figure>
-          <img :src="data.image" :alt="data.name" />
-        </figure>
-      </div>
-      <div class="card__content">
-        <div class="card__content__heading">
-          <h1 class="drink-name">{{ data.name }}</h1>
-          <h3
-            class="is-alcoholic"
-            v-if="data.alcoholic !== null && !data.alcoholic.includes('Non')"
-          >
-            {{ data.alcoholic }}
-          </h3>
-        </div>
-        <div class="card__content__body" v-if="data.category !== null">
-          <p class="category" v-if="!data.category.includes('Other')">
-            {{ data.category }}
-          </p>
-          <p class="category" v-else>Various</p>
-          <p class="glass">{{ data.glass }}</p>
-        </div>
-        <div class="card__content__tags" v-if="data.tags !== null">
-          <div class="tag" v-for="tag in data.tags">
-            <p v-if="tag !== 'Alcoholic'">{{ tag }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
@@ -41,6 +6,7 @@ const data = ref()
 
 function validadeData() {
   return {
+    id: props.drink.idDrink,
     name: props.drink.strDrink,
     image: props.drink.strDrinkThumb,
     category:
@@ -60,12 +26,50 @@ onBeforeMount(() => {
 })
 </script>
 
+<template>
+  <div>
+    <router-link :to="`/drinks/${data.id}`">
+      <div class="card" :class="{ 'card-from-list': fromList }">
+        <div class="card__image">
+          <figure>
+            <img :src="data.image" :alt="data.name" />
+          </figure>
+        </div>
+        <div class="card__content">
+          <div class="card__content__heading">
+            <h1 class="drink-name">{{ data.name }}</h1>
+            <h3
+              class="is-alcoholic"
+              v-if="data.alcoholic !== null && !data.alcoholic.includes('Non')"
+            >
+              {{ data.alcoholic }}
+            </h3>
+          </div>
+          <div class="card__content__body" v-if="data.category !== null">
+            <p class="category" v-if="!data.category.includes('Other')">
+              {{ data.category }}
+            </p>
+            <p class="category" v-else>Various</p>
+            <p class="glass">{{ data.glass }}</p>
+          </div>
+          <div class="card__content__tags" v-if="data.tags !== null">
+            <div class="tag" v-for="tag in data.tags">
+              <p v-if="tag !== 'Alcoholic'">{{ tag }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </div>
+</template>
+
 <style lang="scss" scoped>
 @import '../styles/variables';
 
 * {
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 .card {
