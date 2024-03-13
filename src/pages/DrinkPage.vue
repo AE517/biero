@@ -5,6 +5,7 @@ import { onBeforeMount, ref } from 'vue'
 const props = defineProps(['drinkID'])
 const loaded = ref(false)
 const drink = ref()
+const drinkInstructions = ref([])
 
 /**
  * Organizes all data received from the lookup method from API and returns it as a new object
@@ -36,15 +37,41 @@ function organizeData(data): Object {
     requirements: drinkRequirements.filter(
       (item) => item.ingredient !== null && item.ingredient !== '',
     ),
-    instructions: [
-      data.strInstructions,
-      data.strInstructionsES,
-      data.strInstructionsDE,
-      data.strInstructionsFR,
-      data.strInstructionsIT,
-      data.strInstructionsZH,
-    ],
+    instructions: {
+      EN: data.strInstructions,
+      ES: data.strInstructionsES,
+      DE: data.strInstructionsDE,
+      FR: data.strInstructionsFR,
+      IT: data.strInstructionsIT,
+      ZH: data.strInstructionsZH,
+    },
   }
+}
+
+function displayInstructions(language: string) {
+  let organizedInstructions
+  switch (language) {
+    case 'ES':
+      organizedInstructions = drink.value.instructions.ES
+      break
+    case 'DE':
+      organizedInstructions = drink.value.instructions.DE
+      break
+    case 'FR':
+      organizedInstructions = drink.value.instructions.FR
+      break
+    case 'IT':
+      organizedInstructions = drink.value.instructions.IT
+      break
+    case 'ZH':
+      organizedInstructions = drink.value.instructions.ZH
+      break
+    default:
+      organizedInstructions = drink.value.instructions.EN
+      break
+  }
+
+  drinkInstructions.value = organizedInstructions.split('\r\n')
 }
 
 onBeforeMount(async () => {
@@ -108,7 +135,30 @@ onBeforeMount(async () => {
             </ul>
           </div>
         </section>
-        <section class="instructions"></section>
+        <section class="instructions">
+          <h1>INSTRUCTIONS</h1>
+          <div class="language-options">
+            <div class="item" v-for="key in Object.keys(drink.instructions)">
+              <input
+                type="radio"
+                name="rd-language"
+                :value="key"
+                :id="key"
+                :disabled="drink.instructions[`${key}`] == null"
+                @input="displayInstructions(key)"
+              />
+              <label :for="key">
+                {{ key }}
+              </label>
+            </div>
+          </div>
+          <div class="text-container">
+            <p v-for="instruction in drinkInstructions">
+              {{ instruction }}
+            </p>
+            <br />
+          </div>
+        </section>
       </div>
     </Transition>
   </div>
@@ -125,7 +175,7 @@ onBeforeMount(async () => {
 }
 
 .wrapper {
-  padding: 3em 1em;
+  padding: 3em;
 
   display: grid;
   grid-template-areas:
@@ -224,6 +274,81 @@ onBeforeMount(async () => {
         span {
           opacity: 45%;
         }
+      }
+    }
+  }
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  h1 {
+    text-align: center;
+    font-size: 5em;
+  }
+
+  .language-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+
+    border-radius: 5px;
+    .item {
+      text-align: center;
+
+      input[type='radio'] {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+
+        &:checked + label {
+          color: $blue;
+          background-color: $green;
+
+          transition: all 0.4s ease;
+        }
+
+        &:disabled + label {
+          cursor: default;
+          opacity: 50%;
+        }
+      }
+
+      label {
+        border-radius: 5px;
+
+        background-color: $blue2;
+        color: $green;
+
+        padding: 0.5em 1em;
+        cursor: pointer;
+        font-size: 2rem;
+        transition: all 0.4s ease;
+
+        &.unavailable {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .text-container {
+    margin-top: 3em;
+
+    text-align: justify;
+    border-left: 3px solid $white;
+    p {
+      margin: 0 1em;
+      font-size: 2.5rem;
+      text-wrap: wrap;
+
+      &:not(:first-of-type) {
+        margin-top: 1em;
       }
     }
   }

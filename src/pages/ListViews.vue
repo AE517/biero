@@ -73,7 +73,7 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
         <Transition>
           <h1 v-if="asideVisible">{{ selectedType }}</h1>
         </Transition>
-        <Transition>
+        <Transition name="fadeUp">
           <Suspense>
             <div class="cards-area__content" v-if="cardsLoaded">
               <DrinkCard
@@ -187,5 +187,25 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
       }
     }
   }
+}
+
+.fadeUp-enter-from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.fadeUp-enter-to {
+  transition:
+    opacity 1s ease,
+    transform 0.6s ease;
+}
+
+.fadeUp-leave-from,
+.fadeUp-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition:
+    opacity 1s ease,
+    transform 0.6s ease;
 }
 </style>

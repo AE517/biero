@@ -8,7 +8,7 @@
         <router-link
           v-for="link in options"
           :to="link.path"
-          @click="isVisible = !isVisible"
+          @click="isVisible = false"
         >
           {{ link.routeName }}
         </router-link>
@@ -16,7 +16,7 @@
       <button
         class="nav__button"
         @click="isVisible = !isVisible"
-        :class="{ active: !isVisible }"
+        :class="{ active: true }"
       >
         <font-awesome-icon icon="bars" />
       </button>
