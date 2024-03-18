@@ -129,7 +129,7 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
     .list-container {
       width: 400px;
 
-      background-color: $blue2;
+      background-color: $secondary;
 
       display: flex;
       flex-direction: column;
@@ -173,7 +173,7 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
           margin-right: 0.3em;
 
           &:hover {
-            color: $blue;
+            color: $primary;
             background: $green;
 
             padding-left: 0.6em;

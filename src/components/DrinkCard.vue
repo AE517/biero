@@ -32,7 +32,7 @@ onBeforeMount(() => {
       <div class="card" :class="{ 'card-from-list': fromList }">
         <div class="card__image">
           <figure>
-            <img :src="data.image" :alt="data.name" />
+            <img loading="lazy" :src="data.image" :alt="data.name" />
           </figure>
         </div>
         <div class="card__content">
@@ -75,7 +75,7 @@ onBeforeMount(() => {
 .card {
   width: 420px;
   height: 570px;
-  background-color: $blue2;
+  background-color: $secondary;
 
   display: flex;
 
@@ -141,7 +141,6 @@ onBeforeMount(() => {
     &__tags {
       margin: 1em 0;
 
-      font-size: 1rem;
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -152,12 +151,12 @@ onBeforeMount(() => {
         p {
           font-size: 0.8em;
 
-          color: $blue;
+          color: $primary;
           background-color: $green;
 
-          border-radius: 10px;
+          border-radius: 5px;
 
-          padding: 10px 1em;
+          padding: 8px 1em;
         }
       }
     }
@@ -180,13 +179,13 @@ onBeforeMount(() => {
     }
   }
 
-  @media screen and (max-width: 480px) {
-    width: 340px;
+  @media screen and (max-width: 35em) {
+    width: 320px;
     height: auto;
 
     &__content {
       &__heading {
-        width: 300px;
+        width: 280px;
       }
     }
   }

@@ -1,30 +1,42 @@
 <template>
   <div>
-    <div class="nav">
-      <div class="nav__links" :class="{ active: isVisible }">
-        <a class="veisla" target="_blank" href="https://veisla.vercel.app"
-          >Hungry?</a
-        >
-        <router-link
-          v-for="link in options"
-          :to="link.path"
-          @click="isVisible = false"
-        >
-          {{ link.routeName }}
+    <nav class="nav" :class="{ expanded: isVisible }">
+      <div class="nav__logo">
+        <router-link to="/">
+          <img src="../assets/logo.svg" />
         </router-link>
       </div>
       <button
-        class="nav__button"
+        aria-expanded="false"
+        aria-controls="links"
         @click="isVisible = !isVisible"
-        :class="{ active: true }"
       >
-        <font-awesome-icon icon="bars" />
+        <span v-if="!isVisible">
+          <FontAwesomeIcon icon="fa-solid fa-bars" />
+        </span>
+        <span v-else> <FontAwesomeIcon icon="fa-solid fa-x" /> </span>
       </button>
-    </div>
+      <div class="wrapper" :data-visible="isVisible" id="links">
+        <div class="wrapper__links">
+          <a class="veisla" target="_blank" href="https://veisla.vercel.app"
+            >Hungry?</a
+          >
+          <router-link
+            id="router-links"
+            v-for="link in options"
+            :to="link.path"
+            @click="isVisible = false"
+          >
+            {{ link.routeName }}
+          </router-link>
+        </div>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { RouteLocationRaw } from 'vue-router'
 import { ref } from 'vue'
 
@@ -34,10 +46,10 @@ const options: Array<{
   routeName: String
   path: RouteLocationRaw
 }> = [
-  { routeName: 'Ingredients', path: '/ingredients' },
   { routeName: 'Home', path: '/' },
   { routeName: 'Categories', path: '/categories' },
   { routeName: 'Glasses', path: '/glasses' },
+  { routeName: 'Ingredients', path: '/ingredients' },
 ]
 </script>
 
@@ -50,107 +62,145 @@ const options: Array<{
 }
 
 .nav {
-  z-index: 3;
-  position: fixed;
+  z-index: 5;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
 
-  margin-top: 20px;
+  margin-top: 0.5em;
+
   padding: 5px;
-  border-radius: 20px;
 
-  background-color: #161624;
+  background-color: transparent;
 
-  width: auto;
+  width: 100%;
   height: auto;
 
   font-size: 24px;
 
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-  &__links {
-    color: $white;
-    margin: 0.5em;
-    display: flex;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 
-    align-content: center;
-    justify-content: space-between;
+  &__logo {
+    margin-top: 0.6em;
+  }
+  button {
+    display: none;
+  }
+  .wrapper {
+    z-index: 5;
+    position: fixed;
+    right: 0;
+    background-color: #0c0c1470;
 
-    a {
-      border-radius: 10px;
-      margin: 0 5px;
-      padding: 5px 15px;
-
-      color: #d6ebe0;
-      text-decoration: none;
-
-      transition: all 0.75s ease;
-
-      &.router-link-active {
-        color: #0c0c14;
-        background-color: #acceaa;
-      }
-
-      &.veisla {
-        border-radius: 0;
-        color: #ee4905;
-        transition: none;
-      }
+    @supports (backdrop-filter: blur(1rem)) {
+      background-color: #0c0c1480;
+      backdrop-filter: blur(1rem);
     }
+    &__links {
+      color: $white;
+      margin: 0.5em;
 
-    @media screen and (max-width: 480px) {
-      display: none;
-      margin: 2em;
-      height: auto;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 1em;
+      display: flex;
 
-      &.active {
-        display: flex;
+      align-content: center;
+      justify-content: flex-end;
+      column-gap: 2em;
 
-        a {
-          padding: 5px 10px;
-          font-size: 24px;
+      a {
+        margin: 0 5px;
+        padding: 5px 15px;
+
+        color: #d6ebe0;
+        text-decoration: none;
+
+        &.router-link-active {
+          border-bottom: 2px solid $white;
+        }
+
+        &.veisla {
+          border-radius: 0;
+          color: #ee4905;
+          transition: none;
         }
       }
     }
   }
+}
 
-  &__button {
-    display: none;
-    padding: 5px;
+@media (max-width: 35em) {
+  .nav {
+    position: fixed;
+    height: 50px;
+    margin: 0;
+    padding: 0;
 
-    background-color: $blue2;
-    color: $white;
-
-    @media screen and (max-width: 480px) {
-      display: block;
-    }
-  }
-
-  @media screen and (max-width: 720px) {
-    margin-top: 0;
-    border-radius: 0;
-    width: 100%;
-
-    &__links {
-      a {
-        font-size: 20px;
-        padding: 5px;
+    &__logo {
+      height: 40px;
+      img {
+        height: 40px;
       }
     }
-  }
+    button {
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      display: block;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: none;
+      margin-left: 10px;
+      span {
+        font-size: 2rem;
+        color: $white;
+      }
+      background: none;
+      z-index: 10;
+    }
 
-  @media screen and (max-width: 480px) {
-    z-index: 2;
-    transform: translateX(0);
-    left: 0;
-    margin-top: 10px;
-    margin-left: 10px;
-    border-radius: 10px;
-    width: auto;
+    .wrapper {
+      position: relative;
+      &[data-visible='true'] {
+        transform: translate(0%);
+      }
+      transform: translateX(100%);
+      width: 100%;
+      &__links {
+        margin: 0;
+
+        padding: min(30vh, 5rem) 0 0 0;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        row-gap: 1em;
+
+        a {
+          font-size: 1.7rem;
+          text-align: left;
+          padding: 0;
+          margin-left: 20px;
+          width: 6em;
+
+          transition: padding-left 0.3s ease-in-out;
+
+          &.router-link-active {
+            padding-left: 10px;
+            border-bottom: none;
+            border-left: 2px solid $green;
+            transition: padding-left 0.3s ease-in-out;
+          }
+        }
+      }
+      transition: transform 0.3s ease-in;
+    }
+    &.expanded {
+      transition: height 0.4s ease;
+      height: 100%;
+    }
+    transition: height 0.8s ease;
   }
 }
 </style>

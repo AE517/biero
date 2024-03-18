@@ -4,12 +4,24 @@
       <div class="input-field">
         <input type="text" v-model="model" placeholder="Search drink here" />
       </div>
-      <button class="lucky-button">Feeling Lucky?</button>
+      <button class="lucky-button" @click="goToRandomDrink()">
+        Feeling Lucky?
+      </button>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import API from '../api/main'
+
+const route = useRouter()
+
 const model = defineModel()
+
+const goToRandomDrink = async () => {
+  const res = await API.methods.random()
+  return route.push(`/drinks/${res.idDrink}`)
+}
 </script>
 
 <style scoped lang="scss">
@@ -78,7 +90,7 @@ const model = defineModel()
 
   .lucky-button {
     background-color: $green;
-    color: $blue;
+    color: $primary;
 
     font-size: 1.15rem;
     padding: 0 1em;

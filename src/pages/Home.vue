@@ -50,7 +50,7 @@ const searchDrinks = async (drink: String) => {
       </div>
     </section>
     <Transition>
-      <section v-show="loaded">
+      <section class="cards-space" v-show="loaded">
         <div class="drink-title">
           <h1 v-if="drinks !== null">{{ title }}</h1>
           <h1 v-else>Nothing here but Us</h1>
@@ -99,7 +99,7 @@ const searchDrinks = async (drink: String) => {
     transition: all 0.5s ease;
 
     &:hover {
-      color: $blue;
+      color: $primary;
       background-color: $green;
       border: 2px solid $green;
 
@@ -107,14 +107,26 @@ const searchDrinks = async (drink: String) => {
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 35em) {
+    overflow-x: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 60px;
+    justify-content: flex-start;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     .letters {
       display: flex;
       justify-content: center;
       align-content: center;
-      width: 35px;
-      height: 40px;
+      width: 30px;
+      height: 35px;
       text-align: center;
+
+      font-size: 0.8rem;
     }
   }
 }
@@ -136,6 +148,16 @@ const searchDrinks = async (drink: String) => {
   justify-items: center;
   align-content: center;
   justify-content: center;
+}
+
+@media (max-width: 35em) {
+  .cards-space {
+    .drink-title {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
 }
 
 /* Vue Transition */

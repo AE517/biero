@@ -15,7 +15,7 @@ const API = {
       return await axios
         .get(`${this.baseURL}random.php`)
         .then((response) => {
-          return response.data.drinks
+          return response.data.drinks[0]
         })
         .catch((error) => console.error(error))
     },

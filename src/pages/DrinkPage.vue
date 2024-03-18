@@ -76,7 +76,6 @@ function displayInstructions(language: string) {
 
 onBeforeMount(async () => {
   const res = await api.methods.lookup(props.drinkID)
-  console.log(organizeData(res))
   drink.value = organizeData(res)
   loaded.value = true
 })
@@ -116,6 +115,7 @@ onBeforeMount(async () => {
                 :alt="drink.name"
                 width="550"
                 height="550"
+                loading="lazy"
               />
             </figure>
           </div>
@@ -231,7 +231,7 @@ onBeforeMount(async () => {
         li {
           p {
             font-size: 1.5rem;
-            color: $blue;
+            color: $primary;
             background-color: $green;
 
             padding: 0.5em;
@@ -307,7 +307,7 @@ onBeforeMount(async () => {
         height: 0;
 
         &:checked + label {
-          color: $blue;
+          color: $primary;
           background-color: $green;
 
           transition: all 0.4s ease;
@@ -322,7 +322,7 @@ onBeforeMount(async () => {
       label {
         border-radius: 5px;
 
-        background-color: $blue2;
+        background-color: $secondary;
         color: $green;
 
         padding: 0.5em 1em;
