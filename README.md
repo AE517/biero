@@ -1,18 +1,78 @@
-# Vue 3 + TypeScript + Vite
+<img src="/public/biero_logo.svg" alt="Biero Logo" 
+   style="
+   display: block; 
+   margin-left: auto; 
+   margin-right: auto; 
+   width: 50%;">
+</img>  
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<h1 style="text-align: center;">Biero</h1>
+<h2 style="text-align: center;"><i>A journey of unforgettable <span style="color: #CEB180">tastes</span> awaits you...</i></h2>  
+<hr>
 
-## Recommended IDE Setup
+## Table of Contents
+1. [General Info](#general-info)  
+    1.1 [The Idea](#the-idea)  
+    1.2 [On Going Functionalities](#on-going-functionalities)  
+2. [Technologies](#technologies)  
+3. [Lauch](#launch)  
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+<hr>
 
-## Type Support For `.vue` Imports in TS
+## General Info
+By the same creators of [Veisla](https://veisla.vercel.app). <strong>Biero</strong> (Beer in Esperanto), is a interactive browser of Cocktail Drinks, aiming to provide a pletora of options to enhance your next party or your knowledge in the craft of mixology. Varying from Categories to Ingredients and even type of Glasses, the app displays everything necessary for the preparation, including multi language instructions.  
+### The Idea  
+The project was made with the intuition of continuing further on my knowledge journey around Web and Front-End development, also focusing on implementing a proper pre-designed plan as well using TypeScript.  
+<img src="/public/Biero_Initial_Design_Process.png" alt="Biero Design Process" style="
+   display: block; 
+   margin-left: auto; 
+   margin-right: auto; 
+   width: 50%;"></img>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### On Going Functionalities  
+On the same path as <strong>Veisla</strong>, </strong>Biero</strong> also uses the free version available of the [TheCockTailDB](https://thecocktaildb.com/api.php) API (from the same creators of the [TheMealDB](https://themealdb.com/api.php)). limiting the user's search to only one ingredient at a time.  
+In the future the user will be able to filter it's research more efficiently by providing multiple ingredient search, as well filter it's options by popularity or receive suggestions randomly as well.  
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Technologies
+<strong>Biero</strong> currently uses:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- [Vite](https://vitejs.dev);
+- [Vue.js](https://vuejs.org);
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com).
+
+As well:
+
+- Axios;
+- Vue-Router;
+- [Font-Awesome](https://fontawesome.com/docs).
+
+The Overall Design process and researching was made in [Figma](https://figma.com)  
+
+## Launch  
+To run <strong>Biero</strong> on your machine, first make sure to have <i>yarn</i> and <i>Vite</i> installed.
+
+Download the project and unzip it to your prefered folder, cd into the folder in your terminal, then install the dependencies:
+
+```bash
+cd biero/
+yarn
+```
+
+Then:
+
+```bash
+vite
+```
+
+After that follow the port informed in your terminal in your prefered browser, and enjoy your journey, but <strong>PLEASE</strong> with moderation...
+
+Just like this:
+
+```bash
+  VITE v4.2.1  ready in 1337 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+```
