@@ -1,9 +1,9 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
 //Pages
 const Home = () => import('../pages/Home.vue')
 const ListViews = () => import('../pages/ListViews.vue')
 const DrinkPage = () => import('../pages/DrinkPage.vue')
-
-import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -11,7 +11,7 @@ const routes = [
     path: '/:listType',
     name: 'Lists',
     component: ListViews,
-    beforeEnter: (to: Object, _from: Object, next: Function) => {
+    beforeEnter: (to: any, _from: Object, next: Function) => {
       const types: Array<String> = ['categories', 'glasses', 'ingredients']
       const isValid = (param: string) => {
         return types.includes(param) ? true : false

@@ -14,7 +14,7 @@ const drinkInstructions = ref([])
  * @returns object contained all organized data
  */
 
-function organizeData(data): Object {
+function organizeData(data: any): Object {
   const drinkRequirements: Array<Object> = Array.from(
     { length: 20 },
     (_, i) => ({
@@ -35,7 +35,7 @@ function organizeData(data): Object {
         ? data.strTags.split(',')
         : null,
     requirements: drinkRequirements.filter(
-      (item) => item.ingredient !== null && item.ingredient !== '',
+      (item: any) => item.ingredient !== null && item.ingredient !== '',
     ),
     instructions: {
       EN: data.strInstructions,
