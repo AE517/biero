@@ -1,13 +1,11 @@
+<p align="center">
 <img src="/public/biero_logo.svg" alt="Biero Logo" 
-   style="
-   display: block; 
-   margin-left: auto; 
-   margin-right: auto; 
-   width: 50%;">
-</img>  
+   style="width: 500px; height: 500px;" />
+<img src="/src/assets/biero_logo.svg" style="width: 500px; height: 500px">
+</p>  
 
-<h1 style="text-align: center;">Biero</h1>
-<h2 style="text-align: center;"><i>A journey of unforgettable <span style="color: #CEB180">tastes</span> awaits you...</i></h2>  
+# <p align="center"> BIERO </p>
+<h2 style="text-align: center;" align="center"><i>A journey of unforgettable <span style="color: #CEB180">tastes</span> awaits you...</i></h2>  
 <hr>
 
 ## Table of Contents
@@ -23,11 +21,13 @@
 By the same creators of [Veisla](https://veisla.vercel.app). <strong>Biero</strong> (Beer in Esperanto), is a interactive browser of Cocktail Drinks, aiming to provide a pletora of options to enhance your next party or your knowledge in the craft of mixology. Varying from Categories to Ingredients and even type of Glasses, the app displays everything necessary for the preparation, including multi language instructions.  
 ### The Idea  
 The project was made with the intuition of continuing further on my knowledge journey around Web and Front-End development, also focusing on implementing a proper pre-designed plan as well using TypeScript.  
+<p align="center">
 <img src="/public/Biero_Initial_Design_Process.png" alt="Biero Design Process" style="
    display: block; 
    margin-left: auto; 
    margin-right: auto; 
-   width: 50%;"></img>
+   width: 50%;" />
+</p>
 
 ### On Going Functionalities  
 On the same path as <strong>Veisla</strong>, </strong>Biero</strong> also uses the free version available of the [TheCockTailDB](https://thecocktaildb.com/api.php) API (from the same creators of the [TheMealDB](https://themealdb.com/api.php)). limiting the user's search to only one ingredient at a time.  
