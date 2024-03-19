@@ -35,6 +35,17 @@ const searchDrinks = async (drink: String) => {
 
 <template>
   <div>
+    <section class="hero">
+      <div class="hero__image">
+        <img
+          src="../assets/biero_logo.svg"
+          width="500"
+          height="500"
+          alt="biero_logo"
+        />
+      </div>
+      <h1>A journey of unforgettable <span>tastes</span> awaits you...</h1>
+    </section>
     <section>
       <div class="search_field">
         <SearchBar v-on:keyup.enter="searchDrinks(query)" v-model="query" />
@@ -77,6 +88,32 @@ const searchDrinks = async (drink: String) => {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+.hero {
+  margin-bottom: 2em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__image {
+    transform: translateX(-20px);
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  h1 {
+    margin-top: 2em;
+    color: $white;
+    font-size: 2rem;
+
+    span {
+      color: $green;
+    }
+  }
 }
 
 .letters-navigation {

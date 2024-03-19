@@ -247,6 +247,8 @@ onBeforeMount(async () => {
       border-radius: 30px;
       overflow: hidden;
       img {
+        max-width: 100%;
+        height: auto;
         border-radius: inherit;
       }
     }
@@ -340,15 +342,114 @@ onBeforeMount(async () => {
   .text-container {
     margin-top: 3em;
 
-    text-align: justify;
     border-left: 3px solid $white;
+    width: 100%;
+
     p {
+      text-align: left;
       margin: 0 1em;
       font-size: 2.5rem;
       text-wrap: wrap;
 
       &:not(:first-of-type) {
         margin-top: 1em;
+      }
+    }
+  }
+}
+
+@media (max-width: 64em) {
+  .wrapper {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 48em) {
+  .wrapper {
+    padding: 1.5em;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    justify-content: center;
+  }
+
+  .presentation {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1em;
+
+    &__content {
+      width: 100%;
+      .drink-name {
+        text-align: center;
+        h1 {
+          font-size: 3.5rem;
+        }
+
+        h2 {
+          margin-top: 1em;
+          font-size: 2.5rem;
+        }
+      }
+
+      .drink-details {
+        margin-top: 1em;
+        text-align: center;
+        h3 {
+          font-size: 2rem;
+        }
+      }
+
+      .drink-tags {
+        margin-top: 1.5em;
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          li > p {
+            border-radius: 5px;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
+    &__image {
+      margin-top: 1em;
+      figure {
+        border-radius: 15px;
+      }
+    }
+  }
+
+  .ingredients {
+    h1 {
+      font-size: 3rem;
+    }
+
+    &__details {
+      ul > li {
+        text-align: left;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .instructions {
+    h1 {
+      font-size: 3rem;
+    }
+
+    .language-options {
+      flex-wrap: wrap;
+      .item > label {
+        padding: 0.3em 0.7em;
+        font-size: 1.7rem;
+      }
+    }
+
+    .text-container {
+      p {
+        font-size: 1.5rem;
       }
     }
   }

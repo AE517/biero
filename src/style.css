@@ -12,6 +12,10 @@
   font-family: "ABeeZee", sans-serif;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
   height: 100vh;
   margin: 0;

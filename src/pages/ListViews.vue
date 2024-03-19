@@ -68,24 +68,22 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
         </div>
       </aside>
     </Transition>
-    <section>
-      <div class="cards-area">
-        <Transition>
-          <h1 v-if="asideVisible">{{ selectedType }}</h1>
-        </Transition>
-        <Transition name="fadeUp">
-          <Suspense>
-            <div class="cards-area__content" v-if="cardsLoaded">
-              <DrinkCard
-                v-for="drink in drinks"
-                :key="drink.idDrink"
-                :drink="drink"
-                :from-list="true"
-              />
-            </div>
-          </Suspense>
-        </Transition>
-      </div>
+    <section class="cards-area">
+      <Transition>
+        <h1 v-if="asideVisible">{{ selectedType }}</h1>
+      </Transition>
+      <Transition name="fadeUp">
+        <Suspense>
+          <div class="cards-area__content" v-if="cardsLoaded">
+            <DrinkCard
+              v-for="drink in drinks"
+              :key="drink.idDrink"
+              :drink="drink"
+              :from-list="true"
+            />
+          </div>
+        </Suspense>
+      </Transition>
     </section>
   </div>
 </template>
@@ -136,7 +134,7 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
       align-items: center;
       gap: 0.3em;
 
-      border-radius: 20px;
+      border-radius: 10px;
 
       padding: 1em;
       box-sizing: border-box;
@@ -186,6 +184,54 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
         }
       }
     }
+  }
+}
+
+@media (max-width: 64em) {
+  .wrapper {
+    justify-content: center;
+
+    grid-template-columns: 300px 1fr;
+
+    aside {
+      .list-container {
+        width: 100%;
+
+        &__items {
+          width: 100%;
+          max-height: 400px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  .wrapper {
+    grid-template-areas:
+      'aside'
+      'cards';
+
+    justify-content: center;
+
+    grid-template-columns: auto;
+
+    aside {
+      width: 100%;
+    }
+
+    .cards-area {
+      margin-top: 1em;
+      &__content {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 35em) {
+  .wrapper {
+    grid-template-columns: 350px;
   }
 }
 

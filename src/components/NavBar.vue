@@ -3,7 +3,7 @@
     <nav class="nav" :class="{ expanded: isVisible }">
       <div class="nav__logo">
         <router-link to="/">
-          <img src="../assets/logo.svg" />
+          <img src="../assets/biero_logo.svg" />
         </router-link>
       </div>
       <button
@@ -130,7 +130,18 @@ const options: Array<{
   }
 }
 
-@media (max-width: 35em) {
+@media (max-width: 64em) and (min-width: 48em) {
+  .nav {
+    font-size: 20px;
+    .wrapper {
+      &__links {
+        column-gap: 0.5em;
+      }
+    }
+  }
+}
+
+@media (max-width: 48em) {
   .nav {
     position: fixed;
     height: 50px;
@@ -138,9 +149,9 @@ const options: Array<{
     padding: 0;
 
     &__logo {
-      height: 40px;
+      height: 60px;
       img {
-        height: 40px;
+        height: 60px;
       }
     }
     button {

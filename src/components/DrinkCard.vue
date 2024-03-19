@@ -32,7 +32,13 @@ onBeforeMount(() => {
       <div class="card" :class="{ 'card-from-list': fromList }">
         <div class="card__image">
           <figure>
-            <img loading="lazy" :src="data.image" :alt="data.name" />
+            <img
+              loading="lazy"
+              width="370"
+              height="370"
+              :src="data.image"
+              :alt="data.name"
+            />
           </figure>
         </div>
         <div class="card__content">
@@ -95,8 +101,8 @@ onBeforeMount(() => {
 
     figure {
       img {
-        width: 100%;
-        max-height: auto;
+        width: 370px;
+        height: 370px;
 
         transition: scale 0.2s ease-in;
       }
@@ -164,7 +170,6 @@ onBeforeMount(() => {
 
   &.card-from-list {
     height: 500px;
-    justify-content: space-between;
     h1 {
       font-size: 2.3rem;
       width: 100%;
@@ -182,6 +187,17 @@ onBeforeMount(() => {
   @media screen and (max-width: 35em) {
     width: 320px;
     height: auto;
+
+    &.card-from-list {
+      height: 455px;
+    }
+
+    &__image {
+      figure > img {
+        width: 300px;
+        height: 300px;
+      }
+    }
 
     &__content {
       &__heading {
