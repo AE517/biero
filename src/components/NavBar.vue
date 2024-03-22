@@ -3,10 +3,16 @@
     <nav class="nav" :class="{ expanded: isVisible }">
       <div class="nav__logo">
         <router-link to="/">
-          <img src="../assets/biero_logo.svg" />
+          <img
+            src="../assets/biero_logo.svg"
+            alt="navbar_logo"
+            width="150"
+            height="70"
+          />
         </router-link>
       </div>
       <button
+        name="bt-navbar"
         aria-expanded="false"
         aria-controls="links"
         @click="isVisible = !isVisible"
@@ -22,9 +28,9 @@
             >Hungry?</a
           >
           <router-link
-            id="router-links"
             v-for="link in options"
             :to="link.path"
+            :aria-label="link.label"
             @click="isVisible = false"
           >
             {{ link.routeName }}
@@ -45,11 +51,24 @@ const isVisible = ref(false)
 const options: Array<{
   routeName: String
   path: RouteLocationRaw
+  label: String
 }> = [
-  { routeName: 'Home', path: '/' },
-  { routeName: 'Categories', path: '/categories' },
-  { routeName: 'Glasses', path: '/glasses' },
-  { routeName: 'Ingredients', path: '/ingredients' },
+  { routeName: 'Home', path: '/', label: 'Biero Main page' },
+  {
+    routeName: 'Categories',
+    path: '/categories',
+    label: 'Search drinks by their different categories',
+  },
+  {
+    routeName: 'Glasses',
+    path: '/glasses',
+    label: 'Search drinks by their different glasses',
+  },
+  {
+    routeName: 'Ingredients',
+    path: '/ingredients',
+    label: "Search drinks by it's main ingredient",
+  },
 ]
 </script>
 
@@ -113,11 +132,11 @@ const options: Array<{
         margin: 0 5px;
         padding: 5px 15px;
 
-        color: #d6ebe0;
+        color: $white;
         text-decoration: none;
 
         &.router-link-active {
-          border-bottom: 2px solid $white;
+          border-bottom: 2px solid $green;
         }
 
         &.veisla {

@@ -199,7 +199,7 @@ async function fetchDrinksByType(type: String, query: string): Promise<void> {
 
         &__items {
           width: 100%;
-          max-height: 400px;
+          max-height: 300px;
         }
       }
     }

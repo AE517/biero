@@ -39,8 +39,8 @@ const searchDrinks = async (drink: String) => {
       <div class="hero__image">
         <img
           src="../assets/biero_logo.svg"
-          width="500"
-          height="500"
+          width="400"
+          height="400"
           alt="biero_logo"
         />
       </div>
