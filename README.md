@@ -21,7 +21,7 @@ By the same creators of [Veisla](https://veisla.vercel.app). <strong>Biero</stro
 ### The Idea  
 The project was made with the intuition of continuing further on my knowledge journey around Web and Front-End development, also focusing on implementing a proper pre-designed plan as well using TypeScript.  
 <p align="center">
-<img src="/public/Biero_Initial_Design_Process.png" alt="Biero Design Process" style="
+<img src="https://github.com/Guilherme-HJA/biero/blob/main/public/Biero_Initial_Design_Process.png" alt="Biero Design Process" style="
    display: block; 
    margin-left: auto; 
    margin-right: auto; 
