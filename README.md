@@ -1,7 +1,6 @@
 <p align="center">
-<img src="/public/biero_logo.svg" alt="Biero Logo" 
+<img src="https://biero.vercel.app/assets/biero_logo-Dg6_I8rW.svg" alt="Biero Logo" 
    style="width: 500px; height: 500px;" />
-<img src="/src/assets/biero_logo.svg" style="width: 500px; height: 500px">
 </p>  
 
 # <p align="center"> BIERO </p>
