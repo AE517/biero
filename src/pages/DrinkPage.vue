@@ -49,19 +49,19 @@ onBeforeMount(async () => {
         <section class="presentation">
           <div class="presentation__content">
             <div class="drink-name">
-              <h1>{{ drink.name }}</h1>
+              <h1>{{ drink?.name }}</h1>
               <h2>
                 <span v-if="drink?.iba !== null">{{ drink?.iba }} </span>|
                 <span v-if="drink?.alcoholic">Alcoholic</span>
               </h2>
             </div>
             <div class="drink-details">
-              <h3>{{ drink.category }}</h3>
-              <h3>{{ drink.glass }}</h3>
+              <h3>{{ drink?.category }}</h3>
+              <h3>{{ drink?.glass }}</h3>
             </div>
             <div class="drink-tags">
               <ul>
-                <li v-for="tag in drink.tags">
+                <li v-for="tag in drink?.tags">
                   <p :class="{ alcoholic: tag.includes('Alcoholic') }">
                     {{ tag }}
                   </p>
@@ -72,8 +72,8 @@ onBeforeMount(async () => {
           <div class="presentation__image">
             <figure>
               <img
-                :src="drink.image"
-                :alt="drink.name"
+                :src="drink?.image"
+                :alt="drink?.name"
                 width="550"
                 height="550"
                 loading="lazy"
@@ -85,7 +85,7 @@ onBeforeMount(async () => {
           <h1>INGREDIENTS</h1>
           <div class="ingredients__details">
             <ul>
-              <li v-for="requirement in drink.requirements">
+              <li v-for="requirement in drink?.requirements">
                 <p>
                   {{ requirement.ingredient
                   }}<span v-if="requirement.measurement !== null">
@@ -99,7 +99,9 @@ onBeforeMount(async () => {
         <section class="instructions">
           <h1>INSTRUCTIONS</h1>
           <div class="language-options">
+            <!-- @vue-ignore -->
             <div class="item" v-for="key in Object.keys(drink.instructions)">
+              <!-- @vue-ignore -->
               <input
                 type="radio"
                 name="rd-language"
