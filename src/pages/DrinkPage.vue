@@ -1,82 +1,43 @@
 <script setup lang="ts">
 import api from '../api/main.ts'
 import { onBeforeMount, ref } from 'vue'
+import { Drink, organizeData } from '../utils/organizeData.ts'
 
 const props = defineProps(['drinkID'])
 const loaded = ref(false)
-const drink = ref()
-const drinkInstructions = ref([])
-
-/**
- * Organizes all data received from the lookup method from API and returns it as a new object
- *
- * @param data - all data received from the API response
- * @returns object contained all organized data
- */
-
-function organizeData(data: any): Object {
-  const drinkRequirements: Array<Object> = Array.from(
-    { length: 20 },
-    (_, i) => ({
-      ingredient: data[`strIngredient${i + 1}`] ?? null,
-      measurement: data[`strMeasure${i + 1}`] ?? null,
-    }),
-  )
-
-  return {
-    name: data.strDrink,
-    image: data.strDrinkThumb,
-    category: data.strCategory,
-    alcoholic: data.strAlcoholic,
-    glass: data.strGlass,
-    iba: data.strIBA,
-    tags:
-      data.strTags !== undefined && data.strTags !== null
-        ? data.strTags.split(',')
-        : null,
-    requirements: drinkRequirements.filter(
-      (item: any) => item.ingredient !== null && item.ingredient !== '',
-    ),
-    instructions: {
-      EN: data.strInstructions,
-      ES: data.strInstructionsES,
-      DE: data.strInstructionsDE,
-      FR: data.strInstructionsFR,
-      IT: data.strInstructionsIT,
-      ZH: data.strInstructionsZH,
-    },
-  }
-}
+const drink = ref<Drink>()
+const drinkInstructions = ref()
 
 function displayInstructions(language: string) {
-  let organizedInstructions
+  let organizedInstructions: any
   switch (language) {
     case 'ES':
-      organizedInstructions = drink.value.instructions.ES
+      organizedInstructions = drink.value?.instructions.ES
       break
     case 'DE':
-      organizedInstructions = drink.value.instructions.DE
+      organizedInstructions = drink.value?.instructions.DE
       break
     case 'FR':
-      organizedInstructions = drink.value.instructions.FR
+      organizedInstructions = drink.value?.instructions.FR
       break
     case 'IT':
-      organizedInstructions = drink.value.instructions.IT
+      organizedInstructions = drink.value?.instructions.IT
       break
     case 'ZH':
-      organizedInstructions = drink.value.instructions.ZH
+      organizedInstructions = drink.value?.instructions.ZH
       break
     default:
-      organizedInstructions = drink.value.instructions.EN
+      organizedInstructions = drink.value?.instructions.EN
       break
   }
 
-  drinkInstructions.value = organizedInstructions.split('\r\n')
+  drinkInstructions.value = organizedInstructions
 }
 
 onBeforeMount(async () => {
   const res = await api.methods.lookup(props.drinkID)
   drink.value = organizeData(res)
+  console.log(drink.value)
   loaded.value = true
 })
 </script>
@@ -90,8 +51,8 @@ onBeforeMount(async () => {
             <div class="drink-name">
               <h1>{{ drink.name }}</h1>
               <h2>
-                {{ drink.iba }} |
-                <span> {{ drink.alcoholic }} </span>
+                <span v-if="drink?.iba !== null">{{ drink?.iba }} </span>|
+                <span v-if="drink?.alcoholic">Alcoholic</span>
               </h2>
             </div>
             <div class="drink-details">
@@ -153,8 +114,8 @@ onBeforeMount(async () => {
             </div>
           </div>
           <div class="text-container">
-            <p v-for="instruction in drinkInstructions">
-              {{ instruction }}
+            <p>
+              {{ drinkInstructions }}
             </p>
             <br />
           </div>
@@ -206,6 +167,7 @@ onBeforeMount(async () => {
       }
 
       h2 {
+        font-weight: normal;
         font-size: 2rem;
         opacity: 75%;
 
@@ -217,6 +179,7 @@ onBeforeMount(async () => {
 
     .drink-details {
       h3 {
+        font-weight: normal;
         font-size: 3rem;
         font-style: italic;
         opacity: 75%;
