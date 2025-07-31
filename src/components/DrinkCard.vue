@@ -47,8 +47,7 @@ onBeforeMount(() => {
             <h3
               class="is-alcoholic"
               v-if="data.alcoholic !== null && !data.alcoholic.includes('Non')"
-            >
-              {{ data.alcoholic }}
+            >{{ data.alcoholic }}
             </h3>
           </div>
           <div class="card__content__body" v-if="data.category !== null">
@@ -216,8 +215,10 @@ onBeforeMount(() => {
     scale: 1.075;
   }
 
-  transition:
-    transform 0.2s ease-in,
-    box-shadow 0.2s ease-in;
+  & {
+    transition:
+      transform 0.2s ease-in,
+      box-shadow 0.2s ease-in;
+  }
 }
 </style>

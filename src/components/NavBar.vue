@@ -224,13 +224,18 @@ const options: Array<{
           }
         }
       }
-      transition: transform 0.3s ease-in;
+      & {
+        transition: transform 0.3s ease-in;
+      }
     }
     &.expanded {
       transition: height 0.4s ease;
       height: 100%;
     }
-    transition: height 0.8s ease;
+    
+    &{
+      transition: height 0.8s ease;
+    }
   }
 }
 </style>
