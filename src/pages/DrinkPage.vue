@@ -51,8 +51,8 @@ onBeforeMount(async () => {
             <div class="drink-name">
               <h1>{{ drink?.name }}</h1>
               <h2>
-                <span v-if="drink?.iba !== null">{{ drink?.iba }} </span>|
-                <span v-if="drink?.alcoholic">Alcoholic</span>
+                <span v-if="drink?.iba !== null">{{ drink?.iba }} </span>
+                <span v-if="drink?.alcoholic">| Alcoholic</span>
               </h2>
             </div>
             <div class="drink-details">
